@@ -1,18 +1,9 @@
 import requests
 import re
 
-mega_links = []
-file = open("Mega Lien.txt", "r")
-file_valid = open("Mega_Valid.txt", "w")
-
-with open('Mega Lien.txt', 'r') as link:
-    for ligne in link:
-        lien = ligne.strip()
-        mega_links.append(lien)
-
-def valid_mega_url():
+def valid_mega_url(mega_links):
     for i in range(len(mega_links)):
-        url = mega_links[i]
+        url = mega_links
 
         if "https://mega.nz/" in url:
             reqs = requests.get(url)
@@ -21,10 +12,9 @@ def valid_mega_url():
 
             if mega_checker:
                 # Pas Ban
-                print(f"Mega={mega_links[i]} VALID= TRUE")
-                file_valid.write((mega_links[i]) + "\n")
+                return True
             else:
                 # Ban
-                print(f"Mega={mega_links[i]} VALID= FALSE")
+                return False
 
-valid_mega_url()
+
