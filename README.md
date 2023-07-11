@@ -11,3 +11,5 @@ ad_link("adlink_url")
 It will work on some discords like:
 
 That put all their content (Teen Nudes, Snap Leaks...) on mega.nz folder.
+
+MADE WITH LOVE -> https://github.com/PGAPaingu
