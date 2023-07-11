@@ -9,6 +9,9 @@ discord(channel_id, "discord_token", "url_to_grab")
 ad_link("adlink_url")
 
 It will work on some discords like:
+https://discord.com/invite/gJ8RpPubhG (https://discadia.com/server/nude-leaks/)
+https://discord.gg/Ac8h35jDrY
+https://discord.gg/sjhfU4qsgB
 
 That put all their content (Teen Nudes, Snap Leaks...) on mega.nz folder.
 
