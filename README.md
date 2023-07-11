@@ -1,6 +1,6 @@
 # Discord Kitten Catcher
 
-* Launch main.py with the parameter that you need.
+Launch main.py with the parameter that you need.
 
 - For Example in the 1st Step:
 discord(channel_id, "discord_token", "url_to_grab")
