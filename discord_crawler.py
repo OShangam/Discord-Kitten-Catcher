@@ -5,7 +5,8 @@ import re
 liste = []
 url = []
 def discord(channel, discord_token, host):
-    file = open('link/Discord_Links.txt', 'w')
+    # file = open('link1/Discord_Links.txt', 'w', encoding='utf-8')
+    file = open('link1/Discord_Links.txt', 'w')
 
     headers = {
         "authorization":discord_token
@@ -14,6 +15,7 @@ def discord(channel, discord_token, host):
     id_message = None
 
     while True:
+
         if id_message:
             r = requests.get(f"https://discord.com/api/v9/channels/{channel}/messages?before={id_message}&limit=100", headers=headers)
         else:
@@ -21,12 +23,14 @@ def discord(channel, discord_token, host):
         try:
             requests_content = json.loads(r.text)
             id_message = requests_content[-1]["id"]
+
         except Exception as e:
             print(f"[#0001] Error: {e}, the program can continue")
             break
 
         for i in range(len(requests_content)):
-            liste.append(requests_content[i]["content"])
+            content = requests_content[i]["content"].replace('\u200b', '')  # Remove zero-width space
+            liste.append(content)
 
     for i in range(len(liste)):
         try:
@@ -40,6 +44,3 @@ def discord(channel, discord_token, host):
     for i in url:
         file.flush()
         file.write(i + "\n")
-
-
-
