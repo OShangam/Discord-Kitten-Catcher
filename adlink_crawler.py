@@ -33,30 +33,35 @@ def ad_link(host, last_mega):
                 print(f"The request has been denied.")
                 pass
 
+        ad_link_2 = get_adlink(url, host)
         mega_link = get_megalink(url, "mega.nz")
 
+        if mega_link == last_mega:
+            print(f"Already Banned.")
+            return
+
         if mega_link:
-            if mega_link == last_mega:
-                print(f"Already Banned.")
-                return
-
             compteur += 1
 
-            write_system(file, url)
+            write_system(file, mega_link)
             print(f"Processing this link : {discord_links[i]} --> {url} {i}/{len(discord_links)} [{compteur} Mega found]")
 
-        elif get_adlink(url, host) is not None: #NoneType error :)))))
-            url = get_adlink(url, host)
+        elif ad_link_2 is not None: #NoneType error :)))))
+            mega_link = get_megalink(ad_link_2, "mega.nz")
 
-            compteur += 1
+            if mega_link:
+                compteur += 1
 
-            write_system(file, url)
-            print(f"Processing this link : {discord_links[i]} --> {url} {i}/{len(discord_links)} [{compteur} Mega found]")
+                write_system(file, mega_link)
+                print(f"Processing this link : {discord_links[i]} --> {ad_link_2} {i}/{len(discord_links)} [{compteur} Mega found]")
+            else:
+                print("I am sorry but there is no mega link here...")
 
 
 def write_system(file, url):
     file.flush()
     file.write(url + "\n")
+
 
 def get_megalink(url, host):
     response = requests.get(url)
@@ -69,6 +74,7 @@ def get_megalink(url, host):
 
         for link in links:
             return link['href']
+
 def get_adlink(url, host):
     response = requests.get(url)
 

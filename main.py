@@ -12,7 +12,7 @@ elif question_1 == "y":
 #Step 2
 question_2 = input("Do you want to skip Step 2 [y / n] ? ")
 if question_2 == "n":
-    ad_link("rentry", "https://mega.nz/folder/lyUUAJDa#7qNBAOD2GrYL-tjdJr1mmg")
+    ad_link("rentry", "USE_LAST_BANNED_URL")
 elif question_2 == "y":
     #It will keep your file content
     pass
