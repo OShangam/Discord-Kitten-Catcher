@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import re
 
 discord_links = []
-def ad_link(host):
+def ad_link(host, last_mega):
     file = open("link1/Mega_Links.txt", "w")
     compteur = 0
 
@@ -25,28 +25,61 @@ def ad_link(host):
 
             elif mega:
                 url = mega.group(1)
-
-                file.flush()
                 compteur += 1
 
-                file.write(url + "\n")
+                write_system(file, url)
                 print(f"Processing this link : {discord_links[i]} --> {url} {i}/{len(discord_links)} [{compteur} Mega found]")
             else:
                 print(f"The request has been denied.")
                 pass
 
+        mega_link = get_megalink(url, "mega.nz")
 
-        reqs = requests.get(url)
-        html = BeautifulSoup(reqs.text, 'html.parser')
+        if mega_link:
+            if mega_link == last_mega:
+                print(f"Already Banned.")
+                return
 
-        for link in html.find_all('a'):
-            if "https://mega.nz/" in link.attrs['href']:
-                file.flush()
-                compteur += 1
+            compteur += 1
 
-                file.write(link.get('href') + "\n")
-                print(f"Processing this link : {discord_links[i]} --> {url} {i}/{len(discord_links)} [{compteur} Mega found]")
+            write_system(file, url)
+            print(f"Processing this link : {discord_links[i]} --> {url} {i}/{len(discord_links)} [{compteur} Mega found]")
 
+        elif get_adlink(url, host) is not None: #NoneType error :)))))
+            url = get_adlink(url, host)
+
+            compteur += 1
+
+            write_system(file, url)
+            print(f"Processing this link : {discord_links[i]} --> {url} {i}/{len(discord_links)} [{compteur} Mega found]")
+
+
+def write_system(file, url):
+    file.flush()
+    file.write(url + "\n")
+
+def get_megalink(url, host):
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        soup = BeautifulSoup(response.text, 'html.parser')
+
+        link_pattern = re.compile(f'https://{host}(.*)')
+        links = soup.find_all('a', href=link_pattern)
+
+        for link in links:
+            return link['href']
+def get_adlink(url, host):
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        soup = BeautifulSoup(response.text, 'html.parser')
+
+        link_pattern = re.compile(f'https://{host}(.*)')
+        links = soup.find_all('a', href=link_pattern)
+
+        if links:
+            return links[0]['href']
 def get_html_content(url):
     reqs = requests.get(url)
     html_content = reqs.text
