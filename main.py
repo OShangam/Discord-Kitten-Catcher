@@ -4,7 +4,7 @@ from adlink_crawler import ad_link
 #Step 1
 question_1 = input("Do you want to skip Step 1 [y / n] ? ")
 if question_1 == "n":
-    discord(1126169776918634547, "YOUR_TOKEN", "leak")
+    discord(1081324869611950172, "YOUT_TOKEN", "nude")
 elif question_1 == "y":
     #It will keep your file content
     pass
@@ -12,7 +12,7 @@ elif question_1 == "y":
 #Step 2
 question_2 = input("Do you want to skip Step 2 [y / n] ? ")
 if question_2 == "n":
-    ad_link("rentry", "USE_LAST_BANNED_URL")
+    ad_link("pastelink", "")
 elif question_2 == "y":
     #It will keep your file content
     pass

@@ -33,11 +33,11 @@ def ad_link(host, last_mega):
                 print(f"The request has been denied.")
                 pass
 
-        ad_link_2 = get_adlink(url, host)
         mega_link = get_megalink(url, "mega.nz")
+        ad_link_2 = get_adlink(url, host)
 
         if mega_link == last_mega:
-            print(f"Already Banned.")
+            print("Already Banned.")
             return
 
         if mega_link:
