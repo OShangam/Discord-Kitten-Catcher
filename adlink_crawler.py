@@ -43,6 +43,17 @@ def ad_link(host, last_mega):
         if mega_link:
             compteur += 1
 
+            no_password = re.search(r'Decryption key - {\s*([^{}]+)\s*}', get_html_content(url))
+            no_password_2  = re.search(r'<p>🔑MEGA KEY🔓</p><p>(.*?)<br />', get_html_content(url))
+
+            if no_password:
+                decryption_key = no_password.group(1)
+                mega_link += f"#{decryption_key}"
+            elif no_password_2:
+                decryption_key = no_password_2.group(1)
+                mega_link += f"#{decryption_key}"
+
+
             write_system(file, mega_link)
             print(f"Processing this link : {discord_links[i]} --> {url} {i}/{len(discord_links)} [{compteur} Mega found]")
 
