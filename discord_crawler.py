@@ -5,7 +5,7 @@ import re
 liste = []
 url = []
 def discord(channel, discord_token, host):
-    file = open('link1/Discord_Links.txt', 'w', encoding='utf-8')
+    file = open('link/Discord_Links.txt', 'w', encoding='utf-8')
 
     headers = {
         "authorization":discord_token

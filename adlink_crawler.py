@@ -4,10 +4,10 @@ import re
 
 discord_links = []
 def ad_link(host, last_mega):
-    file = open("link1/Mega_Links.txt", "w")
+    file = open("link/Mega_Links.txt", "w")
     compteur = 0
 
-    with open('link1/Discord_Links.txt', 'r') as link:
+    with open('link/Discord_Links.txt', 'r') as link:
         for ligne in link:
             lien = ligne.strip()
             discord_links.append(lien)
@@ -56,6 +56,7 @@ def ad_link(host, last_mega):
                 print(f"Processing this link : {discord_links[i]} --> {ad_link_2} {i}/{len(discord_links)} [{compteur} Mega found]")
             else:
                 print("I am sorry but there is no mega link here...")
+                pass
 
 
 def write_system(file, url):
